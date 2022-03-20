@@ -1,0 +1,53 @@
+.container {
+	width: 50%;
+	/*
+		box-sizing이 content가 기본이기 때문에,
+		border가 추가되어 width: 50%를 넘게됨
+		따라서, box-sizing: border-box 로 해줘야 함
+		(기본적으로 border-box로 하면 편하기 때문에 index.css로 이동)
+	*/
+	/* box-sizing: border-box; */
+
+	padding: 0.2em;
+}
+
+.video {
+	width: 100%;
+	height: 100%;
+
+	display: flex;
+	align-items: center;
+	border: 1px solid lightgray;
+
+	box-shadow: 3px 3px 5px 0px rgba(191, 191, 191, 0.53);
+
+	/* click 하는 느낌을 주기 위함 */
+	cursor: pointer;
+	transition: transform 250ms ease-in;
+}
+
+/* click 하는 느낌을 주기 위함 */
+.video:hover {
+	transform: scale(1.02);
+}
+
+.thumbnail {
+	width: 40%;
+	height: 100%; /* 썸네일 크기를 일정하게 하기 위함. stretch 발생하긴 함*/
+}
+
+.metadata {
+	margin-left: 0.2em;
+}
+
+/* p tag에 자동으로 margin이 있어 라인 사이에 간격이 생김*/
+.title,
+.channel {
+	margin: 0;
+	font-size: 0.8rem;
+}
+
+.channel {
+	font-size: 0.9rem;
+	font-size: 0.6rem;
+}

@@ -1,0 +1,7 @@
+.videos {
+	display: flex;
+	flex-wrap: wrap;
+	/* li tag default */
+	list-style: none;
+	padding-left: 0;
+}
