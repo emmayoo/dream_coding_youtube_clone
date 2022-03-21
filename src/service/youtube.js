@@ -1,7 +1,7 @@
 class Youtube {
-	constructor(key) {
-		this.key = key;
-		this.baseUrl = 'https://www.googleapis.com/youtube/v3'
+	constructor(httpClient) {
+		this.youtube = httpClient;
+
 		this.requestOptions = {
       method: 'GET',
       redirect: 'follow'
@@ -9,26 +9,28 @@ class Youtube {
 	}
 
 	async mostPopular() {
-		try {
-			const response = await fetch(
-				`${this.baseUrl}/videos?part=snippet&chart=mostPopular&maxResults=25&key=${this.key}`,
-				this.requestOptions
-			);
-			const { items } = await response.json();
-			return items;
-		} catch (error) {
-			return console.log('error', error);
-		}
+		const response = await this.youtube.get('videos', {
+			params: {
+				part: 'snippet',
+				chart: 'mostPopular',
+				maxResults: 25,
+			}
+		});
+
+		return response.data.items;
 	}
 	
-	search(query) {
-		return fetch(
-			`${this.baseUrl}/search?part=snippet&maxResults=25&type=video&q=${query}&key=${this.key}`,
-			this.requestOptions
-		)
-      .then(response => response.json())
-      .then(({ items }) => items.map(item => ({ ...item, id: item.id.videoId })))
-      .catch(error => console.log('error', error));
+	async search(query) {
+		const response = await this.youtube.get('search', {
+			params: {
+				part: 'snippet',
+				type: 'video',
+				maxResults: 25,
+				q: query,
+			}
+		});
+
+		return response.data.items.map(item => ({ ...item, id: item.id.videoId }));
 	}
 }
 
