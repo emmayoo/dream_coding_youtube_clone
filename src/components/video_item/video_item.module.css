@@ -1,5 +1,5 @@
 .container {
-	width: 50%;
+	
 	/*
 		box-sizing이 content가 기본이기 때문에,
 		border가 추가되어 width: 50%를 넘게됨
@@ -9,6 +9,14 @@
 	/* box-sizing: border-box; */
 
 	padding: 0.2em;
+}
+
+.container.grid {
+	width: 50%;
+}
+
+.container.list {
+	width: 100%;
 }
 
 .video {
